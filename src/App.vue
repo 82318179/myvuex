@@ -1,32 +1,42 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
+      哈哈{{newCount}}--
+      {{this.$store.state.count}}
+      <button @click="countAdd">修改1</button>
+      <button @click="countAddN">修改2</button>
+      <button @click="countAdd1">修改3</button>
+      <button @click="countAdd2">修改4</button>
+      <router-link to="/">Home</router-link>|
       <router-link to="/about">About</router-link>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
+<script>
+export default {
+  methods: {
+    countAdd() {
+      this.$store.commit("addcount");
+    },
+    countAddN() {
+      this.$store.commit("addncount", 100);
+    },
+    countAdd1() {
+      this.$store.dispatch("addncount1", 100);
+    },
+    countAdd2() {
+      this.$store.dispatch("getAsync", 100);
+    }
+  },
+  computed: {
+    newCount() {
+      return this.$store.getters.newCount;
+    }
+  }
+};
+</script>
+
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
